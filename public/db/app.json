@@ -3,7 +3,7 @@
     {
       "name": "table 1",
       "id": "1",
-      "status": "Busy",
+      "status": "Free",
       "peopleAmount": "2",
       "maxPeopleAmount": "4",
       "bill": 20
@@ -11,10 +11,10 @@
     {
       "name": "table 2",
       "id": "2",
-      "status": "Free",
-      "peopleAmount": 0,
+      "status": "Busy",
+      "peopleAmount": "2",
       "maxPeopleAmount": 3,
-      "bill": 0
+      "bill": "23"
     },
     {
       "name": "table 3",
@@ -33,7 +33,6 @@
       "bill": 0
     }
   ],
-
   "storage": [
     {
       "name": "table 5",
@@ -44,6 +43,10 @@
       "bill": 0
     }
   ],
-
-  "status": ["Busy", "Free", "Cleaning", "Reserved"]
+  "status": [
+    "Busy",
+    "Free",
+    "Cleaning",
+    "Reserved"
+  ]
 }

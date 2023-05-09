@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getAllStatus } from '../../../Redux/statusRedux';
-import { Col, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 
-const TableForm = ({ ...props }) => {
+const TableForm = ({ action, ...props }) => {
   const [name, setName] = useState(props.name || '');
   const [status, setStatus] = useState(props.status || '');
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
@@ -12,8 +12,12 @@ const TableForm = ({ ...props }) => {
 
   const statusData = useSelector(getAllStatus);
 
+  const handleSubmit = () => {
+    action({ name, status, peopleAmount, maxPeopleAmount, bill });
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       {name ? (
         <h2>{props.name}</h2>
       ) : (
@@ -65,6 +69,10 @@ const TableForm = ({ ...props }) => {
           </Col>
         </Form.Group>
       )}
+
+      <Button variant="primary" type="submit">
+        Update
+      </Button>
     </Form>
   );
 };

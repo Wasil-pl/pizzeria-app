@@ -1,6 +1,8 @@
 import { Button, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import SingleTable from '../SingleTable.js/SingleTable';
 
-const TableThumbnail = ({ name, status, peopleAmount, bill, shortDescription, id }) => {
+const TableThumbnail = ({ name, status, peopleAmount, bill, id }) => {
   return (
     <Row className="p-3 border-bottom rounded">
       <Col sm={10}>
@@ -11,7 +13,9 @@ const TableThumbnail = ({ name, status, peopleAmount, bill, shortDescription, id
         </p>
       </Col>
       <Col sm={2}>
-        <Button>ShowMore</Button>
+        <Link to={`/table/${id}`} element={<SingleTable />}>
+          <Button variant="primary">Show more</Button>
+        </Link>
       </Col>
     </Row>
   );

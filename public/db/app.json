@@ -43,5 +43,7 @@
       "maxPeopleAmount": "4",
       "bill": 0
     }
-  ]
+  ],
+
+  "status": ["Busy", "Free", "Cleaning", "Reserved"]
 }

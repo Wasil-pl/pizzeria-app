@@ -1,4 +1,5 @@
 export const getAllTables = (state) => state.tables;
+export const getTableById = ({ tables }, tablesId) => tables.find((table) => table.id === tablesId);
 
 export const removeTables = (payload) => ({ type: REMOVE_TABLES, payload });
 export const addTables = (payload) => ({ type: ADD_TABLES, payload });

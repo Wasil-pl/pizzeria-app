@@ -1,19 +1,19 @@
-export const getAllTables = (state) => state.tables;
+export const getAllTables = (state) => state.storage;
 
 export const removeTables = (payload) => ({ type: REMOVE_TABLES, payload });
 export const addTables = (payload) => ({ type: ADD_TABLES, payload });
-export const updateTables = (payload) => ({ type: UPDATE_TABLES, payload });
+export const updateStorage = (payload) => ({ type: UPDATE_STORAGE, payload });
 
 const createActionName = (name) => `app/tables/${name}`;
 const REMOVE_TABLES = createActionName('REMOVE_TABLES');
 const ADD_TABLES = createActionName('ADD_TABLES');
-const UPDATE_TABLES = createActionName('UPDATE_TABLES');
+const UPDATE_STORAGE = createActionName('UPDATE_STORAGE');
 
-export const fetchTables = () => {
+export const fetchStorage = () => {
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tables')
+    fetch('http://localhost:3131/api/storage')
       .then((res) => res.json())
-      .then((tables) => dispatch(updateTables(tables)));
+      .then((storage) => dispatch(updateStorage(storage)));
   };
 };
 
@@ -27,7 +27,7 @@ export const updateRequest = (newTable) => {
       body: JSON.stringify(newTable),
     };
 
-    fetch('http://localhost:3131/tables', options).then(() => dispatch(addTables(newTable)));
+    fetch('http://localhost:3131/storage', options).then(() => dispatch(addTables(newTable)));
   };
 };
 
@@ -37,7 +37,7 @@ const reducer = (statePart = [], action) => {
       return statePart.filter((table) => table.id !== action.payload);
     case ADD_TABLES:
       return [...statePart, { ...action.payload }];
-    case UPDATE_TABLES:
+    case UPDATE_STORAGE:
       return [...action.payload];
     default:
       return statePart;

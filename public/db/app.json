@@ -6,7 +6,7 @@
       "status": "Busy",
       "peopleAmount": "2",
       "maxPeopleAmount": "4",
-      "bill": "20"
+      "bill": 20
     },
     {
       "name": "table 2",
@@ -30,6 +30,17 @@
       "status": "Cleaning",
       "peopleAmount": 0,
       "maxPeopleAmount": 3,
+      "bill": 0
+    }
+  ],
+
+  "storage": [
+    {
+      "name": "table 5",
+      "id": "5",
+      "status": "storage",
+      "peopleAmount": "2",
+      "maxPeopleAmount": "4",
       "bill": 0
     }
   ]

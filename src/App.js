@@ -7,10 +7,13 @@ import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import NoMatch from './components/pages/NoMatch/NoMatch';
+import { fetchStorage } from './Redux/storageRedux';
+import Storage from './components/pages/Storage/Storage';
 
 function App() {
   const dispatch = useDispatch();
 
+  useEffect(() => dispatch(fetchStorage()), [dispatch]);
   useEffect(() => dispatch(fetchTables()), [dispatch]);
 
   return (
@@ -18,6 +21,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/storage" element={<Storage />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
       <Footer />

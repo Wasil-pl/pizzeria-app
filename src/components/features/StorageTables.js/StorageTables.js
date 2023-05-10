@@ -5,6 +5,7 @@ import { getAllTables } from '../../../Redux/storageRedux';
 
 const StorageTables = () => {
   const tables = useSelector(getAllTables);
+  console.log('tables:', tables);
 
   return (
     <Container>

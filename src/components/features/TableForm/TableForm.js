@@ -37,23 +37,23 @@ const TableForm = ({ action, ...props }) => {
 
   return (
     <Form onSubmit={validate(handleSubmit)}>
-      {name ? (
-        <h2>{props.name}</h2>
-      ) : (
+      {!name && (
         <Form.Group controlId="title" as={Row} className="mb-3">
           <Form.Label column sm={1}>
             Name:
           </Form.Label>
-          <Form.Control
-            {...register('title', {
-              required: errorMessages.required,
-              minLength: { value: 3, message: errorMessages.minLength(3) },
-            })}
-            type="text"
-            placeholder="Enter title"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Col sm={4}>
+            <Form.Control
+              {...register('title', {
+                required: errorMessages.required,
+                minLength: { value: 3, message: errorMessages.minLength(3) },
+              })}
+              type="text"
+              placeholder="Enter title"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Col>
           {errors.title && <Error>{errors.title.message}</Error>}
         </Form.Group>
       )}

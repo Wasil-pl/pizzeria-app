@@ -23,9 +23,15 @@ const TableForm = ({ action, ...props }) => {
     action({ name, status, peopleAmount, maxPeopleAmount, bill });
   };
 
-  const handleStatusChange = (event) => {
-    if (event === 'Free' || event === 'Cleaning') {
+  const handleStatusChange = (status) => {
+    if (status === 'Free' || status === 'Cleaning') {
       setPeopleAmount(0);
+    }
+  };
+
+  const handleMaxPeopleAmountChange = (value) => {
+    if (peopleAmount > value) {
+      setPeopleAmount(value);
     }
   };
 
@@ -109,7 +115,10 @@ const TableForm = ({ action, ...props }) => {
               })}
               type="number"
               value={maxPeopleAmount}
-              onChange={(e) => setMaxPeopleAmount(e.target.value)}
+              onChange={(e) => {
+                setMaxPeopleAmount(e.target.value);
+                handleMaxPeopleAmountChange(e.target.value);
+              }}
             />
           </InputGroup>
           {errors.people && <Error>{errors.people.message}</Error>}

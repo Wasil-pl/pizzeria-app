@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getAllStatus } from '../../../Redux/statusRedux';
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import { Error, errorMessages } from '../ErrorMessages/ErrorMessages';
 
 const TableForm = ({ action, ...props }) => {
   const [name, setName] = useState(props.name || '');
@@ -9,6 +11,11 @@ const TableForm = ({ action, ...props }) => {
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || '');
   const [bill, setBill] = useState(props.bill || '');
+  const {
+    register,
+    handleSubmit: validate,
+    formState: { errors },
+  } = useForm();
 
   const statusData = useSelector(getAllStatus);
 
@@ -16,8 +23,14 @@ const TableForm = ({ action, ...props }) => {
     action({ name, status, peopleAmount, maxPeopleAmount, bill });
   };
 
+  const handleStatusChange = (event) => {
+    if (event === 'Free' || event === 'Cleaning') {
+      setPeopleAmount(0);
+    }
+  };
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={validate(handleSubmit)}>
       {name ? (
         <h2>{props.name}</h2>
       ) : (
@@ -25,7 +38,17 @@ const TableForm = ({ action, ...props }) => {
           <Form.Label column sm={1}>
             Name:
           </Form.Label>
-          <Form.Control type="text" placeholder="Enter title" value={name} onChange={(e) => setName(e.target.value)} />
+          <Form.Control
+            {...register('title', {
+              required: errorMessages.required,
+              minLength: { value: 3, message: errorMessages.minLength(3) },
+            })}
+            type="text"
+            placeholder="Enter title"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {errors.title && <Error>{errors.title.message}</Error>}
         </Form.Group>
       )}
 
@@ -34,25 +57,63 @@ const TableForm = ({ action, ...props }) => {
           Status:
         </Form.Label>
         <Col sm={4}>
-          <Form.Select onChange={(e) => setStatus(e.target.value)} value={status}>
+          <Form.Select
+            {...register('status', {
+              required: errorMessages.selectStatus,
+              validate: (value) => value !== 'Choose Option' || errorMessages.selectStatus,
+            })}
+            onChange={(e) => {
+              setStatus(e.target.value);
+              handleStatusChange(e.target.value);
+            }}
+            value={status}
+          >
             <option>Choose Option</option>
             {statusData.map((status) => (
               <option key={status}>{status}</option>
             ))}
           </Form.Select>
+          {errors.status && <Error>{errors.status.message}</Error>}
         </Col>
       </Form.Group>
 
-      <Form.Group controlId="People" as={Row} className="mb-3">
+      <Form.Group controlId="people" as={Row} className="mb-3">
         <Form.Label column sm={1}>
           People:
         </Form.Label>
         <Col sm={2}>
           <InputGroup>
-            <Form.Control type="text" value={peopleAmount} onChange={(e) => setPeopleAmount(e.target.value)} />
+            <Form.Control
+              {...register('people', {
+                required: errorMessages.required,
+                min: { value: 0, message: errorMessages.min(0) },
+                max: { value: maxPeopleAmount, message: errorMessages.max(maxPeopleAmount) },
+                validate: (value, { status }) => {
+                  if (status === 'Free' || status === 'Cleaning') {
+                    if (parseInt(value) !== 0) {
+                      return errorMessages.peopleStatus(status);
+                    }
+                  }
+                },
+              })}
+              type="number"
+              value={peopleAmount}
+              onChange={(e) => setPeopleAmount(e.target.value)}
+            />
             <InputGroup.Text>/</InputGroup.Text>
-            <Form.Control type="text" value={maxPeopleAmount} onChange={(e) => setMaxPeopleAmount(e.target.value)} />
+            <Form.Control
+              {...register('maxPeople', {
+                required: errorMessages.required,
+                min: { value: 0, message: errorMessages.min(0) },
+                max: { value: 10, message: errorMessages.max(10) },
+              })}
+              type="number"
+              value={maxPeopleAmount}
+              onChange={(e) => setMaxPeopleAmount(e.target.value)}
+            />
           </InputGroup>
+          {errors.people && <Error>{errors.people.message}</Error>}
+          {errors.maxPeople && <Error>{errors.maxPeople.message}</Error>}
         </Col>
       </Form.Group>
 
@@ -64,8 +125,17 @@ const TableForm = ({ action, ...props }) => {
           <Col sm={2}>
             <InputGroup>
               <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control type="text" value={bill} onChange={(e) => setBill(e.target.value)} />
+              <Form.Control
+                {...register('bill', {
+                  required: errorMessages.required,
+                  min: { value: 0, message: errorMessages.min(0) },
+                })}
+                type="number"
+                value={bill}
+                onChange={(e) => setBill(e.target.value)}
+              />
             </InputGroup>
+            {errors.bill && <Error>{errors.bill.message}</Error>}
           </Col>
         </Form.Group>
       )}

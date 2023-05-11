@@ -1,0 +1,13 @@
+.container {
+  .name::first-letter {
+    text-transform: uppercase;
+  }
+  .button {
+    display: flex;
+    align-items: center;
+
+    button {
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,12 +1,15 @@
 import { Container } from 'react-bootstrap';
 import AddTableForm from '../../features/AddTableForm/AddTableForm';
+import styles from './TableAdd.module.scss';
 
 const TableAdd = () => {
   return (
-    <Container>
-      <h2>Add Table</h2>
+    <div className={styles.container}>
+      <Container>
+        <h2 className={styles.title}>Add Table</h2>
+      </Container>
       <AddTableForm />
-    </Container>
+    </div>
   );
 };
 

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-
 import { getTableById } from '../../../Redux/tablesRedux';
 import TableForm from '../TableForm/TableForm';
 import { Button, Container } from 'react-bootstrap';

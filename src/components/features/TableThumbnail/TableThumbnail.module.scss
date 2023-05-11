@@ -1,0 +1,9 @@
+.row {
+  .name::first-letter {
+    text-transform: uppercase;
+  }
+  .button {
+    display: flex;
+    align-items: center;
+  }
+}

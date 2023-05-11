@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getAllStatus } from '../../../Redux/statusRedux';
+import PropTypes from 'prop-types';
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Error, errorMessages } from '../ErrorMessages/ErrorMessages';
@@ -26,6 +27,7 @@ const TableForm = ({ action, actionText, ...props }) => {
   const handleStatusChange = (status) => {
     if (status === 'Free' || status === 'Cleaning') {
       setPeopleAmount(0);
+      setBill(0);
     }
   };
 
@@ -104,7 +106,7 @@ const TableForm = ({ action, actionText, ...props }) => {
               })}
               type="number"
               value={peopleAmount}
-              onChange={(e) => setPeopleAmount(e.target.value)}
+              onChange={(e) => setPeopleAmount(parseInt(e.target.value))}
             />
             <InputGroup.Text>/</InputGroup.Text>
             <Form.Control
@@ -116,8 +118,8 @@ const TableForm = ({ action, actionText, ...props }) => {
               type="number"
               value={maxPeopleAmount}
               onChange={(e) => {
-                setMaxPeopleAmount(e.target.value);
-                handleMaxPeopleAmountChange(e.target.value);
+                setMaxPeopleAmount(parseInt(e.target.value));
+                handleMaxPeopleAmountChange(parseInt(e.target.value));
               }}
             />
           </InputGroup>
@@ -141,7 +143,7 @@ const TableForm = ({ action, actionText, ...props }) => {
                 })}
                 type="number"
                 value={bill}
-                onChange={(e) => setBill(e.target.value)}
+                onChange={(e) => setBill(parseInt(e.target.value))}
               />
             </InputGroup>
             {errors.bill && <Error>{errors.bill.message}</Error>}
@@ -154,6 +156,16 @@ const TableForm = ({ action, actionText, ...props }) => {
       </Button>
     </Form>
   );
+};
+
+TableForm.propTypes = {
+  action: PropTypes.func.isRequired,
+  actionText: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  status: PropTypes.string,
+  peopleAmount: PropTypes.number,
+  maxPeopleAmount: PropTypes.number,
+  bill: PropTypes.number,
 };
 
 export default TableForm;

@@ -2,6 +2,7 @@ import { Button, Container } from 'react-bootstrap';
 import StorageTables from '../../features/StorageTables.js/StorageTables';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../views/Loader/Loader';
+import PropTypes from 'prop-types';
 
 const Storage = ({ pending }) => {
   const navigate = useNavigate();
@@ -23,6 +24,10 @@ const Storage = ({ pending }) => {
       <StorageTables />
     </div>
   );
+};
+
+Storage.propTypes = {
+  pending: PropTypes.bool.isRequired,
 };
 
 export default Storage;

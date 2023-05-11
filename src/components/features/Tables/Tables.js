@@ -12,14 +12,7 @@ const Tables = () => {
       <Col>
         {tables.map((table) => (
           <div key={table.id} to={'/table/' + table.id}>
-            <TableThumbnail
-              name={table.name}
-              status={table.status}
-              peopleAmount={table.peopleAmount}
-              maxPeopleAmount={table.maxPeopleAmount}
-              bill={table.bill}
-              id={table.id}
-            />
+            <TableThumbnail name={table.name} status={table.status} bill={table.bill} id={table.id} />
           </div>
         ))}
       </Col>

@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-import { getTableById, moveTableByRemoveRequest, updateRequest } from '../../../Redux/tablesRedux';
+import { getTableById } from '../../../Redux/tablesRedux';
 import TableForm from '../TableForm/TableForm';
 import { Button, Container } from 'react-bootstrap';
-import { moveTableByAddRequest } from '../../../Redux/storageRedux';
+import { addTableRequest, removeTableRequest, updateRequest } from '../../../Utils/FetchFunction';
 
 const SingleTable = () => {
   const { id } = useParams();
@@ -18,8 +18,8 @@ const SingleTable = () => {
   };
 
   const handleMoveToStorage = (tableData) => {
-    dispatch(moveTableByAddRequest(tableData));
-    dispatch(moveTableByRemoveRequest(tableData));
+    dispatch(addTableRequest(tableData, 'storage'));
+    dispatch(removeTableRequest(tableData, 'tables'));
     navigate('/');
   };
 

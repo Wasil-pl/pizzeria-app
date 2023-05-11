@@ -1,16 +1,15 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTables, moveTableToHomeByRemoveRequest } from '../../../Redux/storageRedux';
-import { moveTableToHomeByAddRequest } from '../../../Redux/tablesRedux';
+import { getAllTables } from '../../../Redux/storageRedux';
+import { addTableRequest, removeTableRequest } from '../../../Utils/FetchFunction';
 
 const StorageTables = () => {
   const tables = useSelector(getAllTables);
   const dispatch = useDispatch();
-  console.log('tables:', tables);
 
-  const handleMoveToHome = (tableData) => {
-    dispatch(moveTableToHomeByAddRequest(tableData));
-    dispatch(moveTableToHomeByRemoveRequest(tableData));
+  const handleMoveToStore = (tableData) => {
+    dispatch(addTableRequest(tableData, 'tables'));
+    dispatch(removeTableRequest(tableData, 'storage'));
   };
 
   return (
@@ -27,7 +26,7 @@ const StorageTables = () => {
                 </p>
               </Col>
               <Col sm={4}>
-                <Button onClick={() => handleMoveToHome(table)} variant="primary">
+                <Button onClick={() => handleMoveToStore(table)} variant="primary">
                   Move to Home
                 </Button>
                 <Button variant="danger">Delete table</Button>

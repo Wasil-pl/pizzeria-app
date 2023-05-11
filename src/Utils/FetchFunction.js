@@ -2,8 +2,12 @@ import { updateStatus } from '../Redux/statusRedux';
 import { storageAddTable, storageRemoveTable, updateStorage } from '../Redux/storageRedux';
 import { editTable, storeAddTable, storeRemoveTable, updateTables } from '../Redux/tablesRedux';
 
-export const fetchTables = (target) => {
+export const fetchTables = (target, setPending) => {
+  console.log('setPending:', setPending);
   return (dispatch) => {
+    if (typeof setPending === 'function') {
+      setPending(true);
+    }
     fetch(`http://localhost:3131/api/${target}`)
       .then((res) => res.json())
       .then((data) => {
@@ -19,6 +23,9 @@ export const fetchTables = (target) => {
             break;
           default:
             console.error(`Invalid target: ${target}`);
+        }
+        if (typeof setPending === 'function') {
+          setPending(false);
         }
       });
   };

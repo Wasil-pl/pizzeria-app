@@ -1,9 +1,11 @@
 import Tables from '../../features/Tables/Tables';
+import Loader from '../../views/Loader/Loader';
 
-const Home = () => {
+const Home = ({ pending }) => {
   return (
     <div>
-      <Tables />
+      {pending && <Loader />}
+      {!pending && <Tables />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -13,17 +13,19 @@ import TableAdd from './components/pages/TableAdd/TableAdd';
 
 function App() {
   const dispatch = useDispatch();
+  const [pending, setPending] = useState(false);
+  console.log('pending:', pending);
 
-  useEffect(() => dispatch(fetchTables('storage')), [dispatch]);
-  useEffect(() => dispatch(fetchTables('tables')), [dispatch]);
-  useEffect(() => dispatch(fetchTables('status')), [dispatch]);
+  useEffect(() => dispatch(fetchTables('storage', setPending)), [dispatch]);
+  useEffect(() => dispatch(fetchTables('tables', setPending)), [dispatch]);
+  useEffect(() => dispatch(fetchTables('status', setPending)), [dispatch]);
 
   return (
     <Container>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/storage" element={<Storage />} />
+        <Route path="/" element={<Home pending={pending} />} />
+        <Route path="/storage" element={<Storage pending={pending} />} />
         <Route path="/table/add" element={<TableAdd />} />
         <Route path="/table/:id" element={<SingleTable />} />
         <Route path="*" element={<NoMatch />} />

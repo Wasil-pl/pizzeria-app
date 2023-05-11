@@ -12,6 +12,10 @@ const StorageTables = () => {
     dispatch(removeTableRequest(tableData, 'storage'));
   };
 
+  const deleteTable = (tableData) => {
+    dispatch(removeTableRequest(tableData, 'storage'));
+  };
+
   return (
     <Container>
       <Col>
@@ -29,7 +33,9 @@ const StorageTables = () => {
                 <Button onClick={() => handleMoveToStore(table)} variant="primary">
                   Move to Home
                 </Button>
-                <Button variant="danger">Delete table</Button>
+                <Button onClick={() => deleteTable(table)} variant="danger">
+                  Delete table
+                </Button>
               </Col>
             </Row>
           </div>

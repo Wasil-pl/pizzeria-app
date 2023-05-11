@@ -9,6 +9,7 @@ import NoMatch from './components/pages/NoMatch/NoMatch';
 import Storage from './components/pages/Storage/Storage';
 import SingleTable from './components/features/SingleTable.js/SingleTable';
 import { fetchTables } from './Utils/FetchFunction';
+import TableAdd from './components/pages/TableAdd/TableAdd';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/storage" element={<Storage />} />
+        <Route path="/table/add" element={<TableAdd />} />
         <Route path="/table/:id" element={<SingleTable />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>

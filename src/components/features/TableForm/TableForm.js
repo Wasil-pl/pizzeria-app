@@ -5,11 +5,11 @@ import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Error, errorMessages } from '../ErrorMessages/ErrorMessages';
 
-const TableForm = ({ action, ...props }) => {
+const TableForm = ({ action, actionText, ...props }) => {
   const [name, setName] = useState(props.name || '');
   const [status, setStatus] = useState(props.status || '');
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
-  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || '');
+  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || '0');
   const [bill, setBill] = useState(props.bill || '');
   const {
     register,
@@ -37,7 +37,7 @@ const TableForm = ({ action, ...props }) => {
 
   return (
     <Form onSubmit={validate(handleSubmit)}>
-      {!name && (
+      {actionText === 'Add Table' && (
         <Form.Group controlId="title" as={Row} className="mb-3">
           <Form.Label column sm={1}>
             Name:
@@ -150,7 +150,7 @@ const TableForm = ({ action, ...props }) => {
       )}
 
       <Button variant="primary" type="submit">
-        Update
+        {actionText}
       </Button>
     </Form>
   );

@@ -37,6 +37,7 @@ const SingleTable = () => {
         peopleAmount={tableData.peopleAmount}
         maxPeopleAmount={tableData.maxPeopleAmount}
         bill={tableData.bill}
+        actionText="Update Table"
       />
     </div>
   );

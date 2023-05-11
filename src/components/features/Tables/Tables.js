@@ -8,6 +8,7 @@ const Tables = () => {
 
   return (
     <Container>
+      <h2 className="mb-4">All Tables</h2>
       <Col>
         {tables.map((table) => (
           <div key={table.id} to={'/table/' + table.id}>

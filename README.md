@@ -1,4 +1,4 @@
-https://pizzeria-app.wasil-pl.repl.co
+http://pizzeria-app.wasil-pl.repl.co
 
 # Getting Started with Create React App
 

@@ -1,3 +1,5 @@
+import { API_URL } from '../config';
+
 export const getAllStatus = (state) => state.status;
 
 export const updateStatus = (payload) => ({ type: UPDATE_STATUS, payload });
@@ -18,7 +20,7 @@ export default reducer;
 
 export const fetchStatus = (target) => {
   return (dispatch) => {
-    fetch('http://localhost:3131/status')
+    fetch(`${API_URL}/status`)
       .then((res) => res.json())
       .then((data) => {
         dispatch(updateStatus(data));

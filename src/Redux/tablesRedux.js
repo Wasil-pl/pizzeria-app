@@ -1,4 +1,5 @@
 import { httpClient } from '../api/httpClient';
+import { API_URL } from '../config';
 import { LIST_NAMES } from '../consts';
 import shortid from 'shortid';
 
@@ -72,7 +73,7 @@ export const fetchTables = () => {
     dispatch(fetchTablesStart());
 
     httpClient
-      .get('http://localhost:3131/api/tables')
+      .get(`${API_URL}/tables`)
       .then((res) => res.json())
       .then((data) => dispatch(fetchTablesSuccess(data)))
       .catch((error) => dispatch(fetchTablesFail('Error fetching tables')));
@@ -81,7 +82,7 @@ export const fetchTables = () => {
 
 export const moveRequest = (tableId, target) => {
   return (dispatch) => {
-    httpClient.patch(`http://localhost:3131/api/tables/${tableId}`, { listId: target }).then(() => {
+    httpClient.patch(`${API_URL}/tables/${tableId}`, { listId: target }).then(() => {
       dispatch(storeAddTable(tableId));
     });
   };
@@ -89,7 +90,7 @@ export const moveRequest = (tableId, target) => {
 
 export const addTableRequest = (tableData) => {
   return (dispatch) => {
-    httpClient.post('http://localhost:3131/api/tables', tableData).then(() => {
+    httpClient.post(`${API_URL}/tables`, tableData).then(() => {
       dispatch(storeAddTable(tableData));
     });
   };
@@ -97,7 +98,7 @@ export const addTableRequest = (tableData) => {
 
 export const removeTableRequest = (tableId) => {
   return (dispatch) => {
-    httpClient.delete(`http://localhost:3131/api/tables/${tableId}`).then(() => {
+    httpClient.delete(`${API_URL}/tables/${tableId}`).then(() => {
       dispatch(storeRemoveTable(tableId));
     });
   };
@@ -105,7 +106,7 @@ export const removeTableRequest = (tableId) => {
 
 export const updateRequest = (tableData) => {
   return (dispatch) => {
-    httpClient.patch(`http://localhost:3131/api/tables/${tableData.id}`, tableData).then(() => {
+    httpClient.patch(`${API_URL}/tables/${tableData.id}`, tableData).then(() => {
       dispatch(editTable(tableData));
     });
   };

@@ -6,13 +6,12 @@ import { selectAreTablesLoading, selectTablesError } from '../../../Redux/tables
 
 const Home = () => {
   const isLoading = useSelector(selectAreTablesLoading);
-  const error = useSelector(selectTablesError);
-  console.log('error:', error);
+  const errorBox = useSelector(selectTablesError);
 
   return (
     <div>
-      {error && <ErrorLoad />}
-      {isLoading && <Loader />}
+      {errorBox && <ErrorLoad />}
+      {isLoading && !errorBox && <Loader />}
       {!isLoading && <Tables />}
     </div>
   );

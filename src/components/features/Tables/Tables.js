@@ -1,10 +1,10 @@
 import { Col, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { getAllTables } from '../../../Redux/tablesRedux';
 import TableThumbnail from '../TableThumbnail/TableThumbnail';
+import { getActiveTables } from '../../../Redux/tablesRedux';
 
 const Tables = () => {
-  const tables = useSelector(getAllTables);
+  const tables = useSelector(getActiveTables);
 
   return (
     <Container>

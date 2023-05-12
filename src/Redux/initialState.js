@@ -1,6 +1,10 @@
 const initialState = {
-  tables: [],
-  storage: [],
+  tables: {
+    loading: false,
+    error: null,
+    list: [],
+  },
+
   status: [],
 };
 

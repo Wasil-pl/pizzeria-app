@@ -1,13 +1,13 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import styles from './StorageTables.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTables } from '../../../Redux/storageRedux';
-import { addTableRequest, removeTableRequest } from '../../../Utils/FetchFunction';
 import { useState } from 'react';
 import DeleteTableModal from '../DeleteTableModal/DeleteTableModal';
+import { getStorageTables, moveRequest, removeTableRequest } from '../../../Redux/tablesRedux';
+import { LIST_NAMES } from '../../../consts';
 
 const StorageTables = () => {
-  const tables = useSelector(getAllTables);
+  const tables = useSelector(getStorageTables);
   const dispatch = useDispatch();
 
   const [showDeletePostModal, setShowDeletePostModal] = useState(false);
@@ -15,14 +15,13 @@ const StorageTables = () => {
   const handleCloseModal = () => setShowDeletePostModal(false);
   const handleShowModal = () => setShowDeletePostModal(true);
 
-  const handleMoveToStore = (tableData) => {
-    dispatch(addTableRequest(tableData, 'tables'));
-    dispatch(removeTableRequest(tableData, 'storage'));
+  const handleMoveToHome = (tableId) => {
+    dispatch(moveRequest(tableId, LIST_NAMES.main));
   };
 
-  const onConfirmDeleteTable = (e, tableData) => {
+  const onConfirmDeleteTable = (e, tableId) => {
     e.preventDefault();
-    dispatch(removeTableRequest(tableData, 'storage'));
+    dispatch(removeTableRequest(tableId));
     handleCloseModal();
   };
 
@@ -40,7 +39,7 @@ const StorageTables = () => {
                 </p>
               </Col>
               <Col className={styles.button} sm={4}>
-                <Button onClick={() => handleMoveToStore(table)} variant="primary">
+                <Button onClick={() => handleMoveToHome(table.id)} variant="primary">
                   Move to Home
                 </Button>
                 <Button onClick={handleShowModal} variant="danger">
@@ -49,7 +48,7 @@ const StorageTables = () => {
                 <DeleteTableModal
                   show={showDeletePostModal}
                   onClose={handleCloseModal}
-                  onConfirmDeleteTable={(e) => onConfirmDeleteTable(e, table)}
+                  onConfirmDeleteTable={(e) => onConfirmDeleteTable(e, table.id)}
                 />
               </Col>
             </Row>

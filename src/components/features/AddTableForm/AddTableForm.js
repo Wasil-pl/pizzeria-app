@@ -1,15 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addTableRequest } from '../../../Utils/FetchFunction';
 import TableForm from '../TableForm/TableForm';
 import { Container } from 'react-bootstrap';
+import { addTableRequest } from '../../../Redux/tablesRedux';
 
 const AddTableForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (tableData) => {
-    dispatch(addTableRequest(tableData, 'storage'));
+    dispatch(addTableRequest(tableData));
     navigate('/storage');
   };
 

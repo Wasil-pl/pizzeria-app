@@ -15,3 +15,13 @@ const reducer = (statePart = [], action) => {
 };
 
 export default reducer;
+
+export const fetchStatus = (target) => {
+  return (dispatch) => {
+    fetch('http://localhost:3131/status')
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(updateStatus(data));
+      });
+  };
+};

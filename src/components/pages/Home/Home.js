@@ -1,18 +1,21 @@
-import PropTypes from 'prop-types';
 import Tables from '../../features/Tables/Tables';
 import Loader from '../../views/Loader/Loader';
+import ErrorLoad from '../../views/ErrorLoad/ErrorLoad';
+import { useSelector } from 'react-redux';
+import { selectAreTablesLoading, selectTablesError } from '../../../Redux/tablesRedux';
 
-const Home = ({ pending }) => {
+const Home = () => {
+  const isLoading = useSelector(selectAreTablesLoading);
+  const error = useSelector(selectTablesError);
+  console.log('error:', error);
+
   return (
     <div>
-      {pending && <Loader />}
-      {!pending && <Tables />}
+      {error && <ErrorLoad />}
+      {isLoading && <Loader />}
+      {!isLoading && <Tables />}
     </div>
   );
-};
-
-Home.propTypes = {
-  pending: PropTypes.bool.isRequired,
 };
 
 export default Home;

@@ -12,6 +12,7 @@ const TableForm = ({ action, actionText, ...props }) => {
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || '0');
   const [bill, setBill] = useState(props.bill || '');
+  const listId = 'storage';
   const {
     register,
     handleSubmit: validate,
@@ -21,7 +22,7 @@ const TableForm = ({ action, actionText, ...props }) => {
   const statusData = useSelector(getAllStatus);
 
   const handleSubmit = () => {
-    action({ name, status, peopleAmount, maxPeopleAmount, bill });
+    action({ name, status, peopleAmount, maxPeopleAmount, bill, listId });
   };
 
   const handleStatusChange = (status) => {

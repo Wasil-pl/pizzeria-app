@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';

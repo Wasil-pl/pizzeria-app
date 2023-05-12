@@ -7,7 +7,7 @@
       "peopleAmount": 0,
       "maxPeopleAmount": 3,
       "bill": 0,
-      "listId": "main"
+      "listId": "storage"
     },
     {
       "name": "table 3",
@@ -43,7 +43,7 @@
       "peopleAmount": 4,
       "maxPeopleAmount": 6,
       "bill": 26,
-      "listId": "storage"
+      "listId": "main"
     }
   ],
   "status": [

@@ -43,7 +43,16 @@
       "peopleAmount": 0,
       "maxPeopleAmount": 6,
       "bill": 0,
-      "listId": "storage"
+      "listId": "main"
+    },
+    {
+      "name": "test",
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": "0",
+      "bill": 0,
+      "listId": "storage",
+      "id": "LzZHYjx"
     }
   ],
   "status": [

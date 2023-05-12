@@ -25,7 +25,7 @@ const STORE_REMOVE_TABLE = createActionName('STORE_REMOVE_TABLE');
 const STORE_ADD_TABLE = createActionName('STORE_ADD_TABLE');
 const SET_TABLES = createActionName('SET_TABLES');
 const EDIT_TABLE = createActionName('EDIT_TABLE');
-const CHANGE_LIST = createActionName('CHANGE_LIST'); // payload: {id, listName: LIST_NAMES.main || LIST_NAMES.storage}
+const CHANGE_LIST = createActionName('CHANGE_LIST');
 
 const FETCH_TABLES_START = createActionName('FETCH_TABLES_START');
 const FETCH_TABLES_SUCCESS = createActionName('FETCH_TABLES_SUCCESS');

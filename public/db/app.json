@@ -3,10 +3,10 @@
     {
       "name": "table 4",
       "id": "4",
-      "status": "Cleaning",
-      "peopleAmount": 0,
+      "status": "Busy",
+      "peopleAmount": "0",
       "maxPeopleAmount": 3,
-      "bill": 0,
+      "bill": 6,
       "listId": "main"
     },
     {

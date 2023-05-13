@@ -83,7 +83,7 @@ export const fetchTables = () => {
 export const moveRequest = (tableId, target) => {
   return (dispatch) => {
     httpClient.patch(`${API_URL}/tables/${tableId}`, { listId: target }).then(() => {
-      dispatch(storeAddTable(tableId));
+      dispatch(changeList(tableId, target));
     });
   };
 };
@@ -91,7 +91,7 @@ export const moveRequest = (tableId, target) => {
 export const addTableRequest = (tableData, target) => {
   return (dispatch) => {
     httpClient.post(`${API_URL}/tables`, { ...tableData, listId: target }).then(() => {
-      dispatch(storeAddTable(tableData));
+      dispatch(storeAddTable(tableData, target));
     });
   };
 };

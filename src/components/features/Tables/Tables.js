@@ -5,6 +5,7 @@ import { getActiveTables } from '../../../Redux/tablesRedux';
 
 const Tables = () => {
   const tables = useSelector(getActiveTables);
+  console.log('tables:', tables);
 
   return (
     <Container>

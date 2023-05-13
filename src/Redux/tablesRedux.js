@@ -57,7 +57,7 @@ const reducer = (statePart = { list: [], error: null, loading: false }, action) 
     case STORE_ADD_TABLE:
       return {
         ...statePart,
-        list: [...statePart.list, { ...action.payload, id: shortid() }],
+        list: [...statePart.list, { ...action.payload, id: shortid(), listId: action.payload.listId }],
       };
     case SET_TABLES:
       return { ...statePart, list: [...action.payload] };

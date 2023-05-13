@@ -9,9 +9,9 @@ import { Error, errorMessages } from '../ErrorMessages/ErrorMessages';
 const TableForm = ({ action, actionText, ...props }) => {
   const [name, setName] = useState(props.name || '');
   const [status, setStatus] = useState(props.status || '');
-  const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
-  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || '0');
-  const [bill, setBill] = useState(props.bill || '');
+  const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || 0);
+  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || 0);
+  const [bill, setBill] = useState(props.bill || 0);
   const {
     register,
     handleSubmit: validate,
@@ -32,6 +32,7 @@ const TableForm = ({ action, actionText, ...props }) => {
   };
 
   const handleMaxPeopleAmountChange = (value) => {
+    setMaxPeopleAmount(parseInt(value));
     if (peopleAmount > value) {
       setPeopleAmount(value);
     }
@@ -118,7 +119,6 @@ const TableForm = ({ action, actionText, ...props }) => {
               type="number"
               value={maxPeopleAmount}
               onChange={(e) => {
-                setMaxPeopleAmount(parseInt(e.target.value));
                 handleMaxPeopleAmountChange(parseInt(e.target.value));
               }}
             />

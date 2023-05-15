@@ -16,7 +16,7 @@
       "peopleAmount": 0,
       "maxPeopleAmount": 4,
       "bill": 0,
-      "listId": "storage"
+      "listId": "main"
     },
     {
       "name": "table 2",
@@ -51,7 +51,7 @@
       "peopleAmount": 0,
       "maxPeopleAmount": 0,
       "bill": 0,
-      "listId": "main",
+      "listId": "storage",
       "id": "wr4eMRy"
     },
     {
@@ -60,17 +60,8 @@
       "peopleAmount": 0,
       "maxPeopleAmount": 0,
       "bill": 0,
-      "listId": "main",
-      "id": "OMHSveL"
-    },
-    {
-      "name": "1234",
-      "status": "Cleaning",
-      "peopleAmount": 0,
-      "maxPeopleAmount": 8,
-      "bill": 0,
       "listId": "storage",
-      "id": "mEPwqQN"
+      "id": "OMHSveL"
     }
   ],
   "status": [

@@ -11,10 +11,10 @@ export const selectAreTablesLoading = ({ tables }) => tables.loading;
 export const selectTablesError = ({ tables }) => tables.error;
 
 export const storeRemoveTable = (payload) => ({ type: STORE_REMOVE_TABLE, payload });
-export const storeAddTable = (payload) => ({ type: STORE_ADD_TABLE, payload });
+export const storeAddTable = (payload, target) => ({ type: STORE_ADD_TABLE, payload, target });
 export const updateTables = (payload) => ({ type: SET_TABLES, payload });
 export const editTable = (payload) => ({ type: EDIT_TABLE, payload });
-export const changeList = (payload) => ({ type: CHANGE_LIST, payload });
+export const changeList = (payload, target) => ({ type: CHANGE_LIST, payload, target });
 
 export const fetchTablesStart = () => ({ type: FETCH_TABLES_START });
 export const fetchTablesSuccess = (payload) => ({ type: FETCH_TABLES_SUCCESS, payload });
@@ -44,7 +44,7 @@ const reducer = (statePart = { list: [], error: null, loading: false }, action) 
       return {
         ...statePart,
         list: statePart.list.map((table) =>
-          table.id === action.payload.id ? { ...table, listId: action.payload.listId } : table
+          table.id === action.payload ? { ...table, listId: action.target } : table
         ),
       };
     case STORE_REMOVE_TABLE:
@@ -57,7 +57,7 @@ const reducer = (statePart = { list: [], error: null, loading: false }, action) 
     case STORE_ADD_TABLE:
       return {
         ...statePart,
-        list: [...statePart.list, { ...action.payload, id: shortid(), listId: action.payload.listId }],
+        list: [...statePart.list, { ...action.payload, id: shortid(), listId: action.target }],
       };
     case SET_TABLES:
       return { ...statePart, list: [...action.payload] };

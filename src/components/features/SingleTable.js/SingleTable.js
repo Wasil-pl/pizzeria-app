@@ -18,7 +18,7 @@ const SingleTable = () => {
   };
 
   const handleMoveToStorage = (tableId) => {
-    dispatch(moveRequest(tableId, LIST_NAMES.storage));
+    dispatch(moveRequest({ tableId, listId: LIST_NAMES.storage }));
     navigate('/');
   };
 

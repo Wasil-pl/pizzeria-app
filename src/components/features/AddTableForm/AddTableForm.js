@@ -10,7 +10,7 @@ const AddTableForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (tableData) => {
-    dispatch(addTableRequest(tableData, LIST_NAMES.storage));
+    dispatch(addTableRequest({ tableData, listId: LIST_NAMES.storage }));
     navigate('/storage');
   };
 

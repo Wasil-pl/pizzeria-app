@@ -16,7 +16,7 @@ const StorageTables = () => {
   const handleShowModal = () => setShowDeletePostModal(true);
 
   const handleMoveToHome = (tableId) => {
-    dispatch(moveRequest(tableId, LIST_NAMES.main));
+    dispatch(moveRequest({ tableId, listId: LIST_NAMES.main }));
   };
 
   const onConfirmDeleteTable = (e, tableId) => {
